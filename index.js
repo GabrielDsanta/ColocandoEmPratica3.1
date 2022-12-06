@@ -1,7 +1,7 @@
 
 
 // MultiplicationTable("Opa")
-// BusStop([10, 0], [3, 5], [5, 8])
+// BusStop([[10, 0], [3, 5], [5, 8]])
 // Bingo([21, 13, 2, 7, 5, 14, 7, 15, 9, 10])
 
 function MultiplicationTable(number){
@@ -30,24 +30,28 @@ function MultiplicationTable(number){
     return console.log(finalValueNumber, finalValueTwoNextNumbers)
 }
 
-function BusStop(arrayA, arrayB, arrayC) {
-    let totalPeoples = arrayA[0]
-
-    totalPeoples += arrayB.reduce((total, num) => {
-        return total - num
-    })
-
-    totalPeoples += arrayC.reduce((total, num) => {
-        return total - num
-    })
-    
-    return console.log(totalPeoples)
-}
-
-function Bingo(array){
-    const finalValue = array.filter((item) => {
-        return item === 2 && item < 20 || item === 9 && item < 20 || item === 14 && item < 20 || item === 7 && item < 20 || item === 15 && item < 20
+function BusStop(array) {
+    let finalValue = 0
+    array.forEach((item, index) => {
+        index === 0 && (finalValue = item[0])
+        index === 1 && (finalValue += item[0], finalValue -= item[1])
+        index === 2 && (finalValue += item[0], finalValue -= item[1])
     })
 
     return console.log(finalValue)
+}
+
+function Bingo(array){
+    let CounterLetters = 0
+    const finalValue = array.filter((item) => {
+        if(item === 2 && item < 20 || item === 9 && item < 20 || item === 14 && item < 20 || item === 7 && item < 20 || item === 15 && item < 20){
+            CounterLetters++
+            return item
+        }
+    })
+
+    if(finalValue.length >= 4){
+        return console.log("Ganhou")
+    }
+    return console.log("Perdeu")
 }
