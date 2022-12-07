@@ -1,8 +1,8 @@
 
 
 // MultiplicationTable("Opa")
-// BusStop([[10, 0], [3, 5], [5, 8]])
-// Bingo([21, 13, 2, 7, 5, 14, 7, 15, 9, 10])
+// BusStop([[10, 0], [3, 5], [5, 8], [3, 8], [12, 5]])
+Bingo([2, 2, 2, 7, 5, 14, 7, 7, 9, 10])
 
 function MultiplicationTable(number){
     if(typeof number == 'string'){
@@ -34,24 +34,28 @@ function BusStop(array) {
     let finalValue = 0
     array.forEach((item, index) => {
         index === 0 && (finalValue = item[0])
-        index === 1 && (finalValue += item[0], finalValue -= item[1])
-        index === 2 && (finalValue += item[0], finalValue -= item[1])
+        index >= 1 && (finalValue += item[0], finalValue -= item[1])
     })
 
-    return console.log(finalValue)
+    return finalValue
 }
 
 function Bingo(array){
     let CounterLetters = 0
-    const finalValue = array.filter((item) => {
-        if(item === 2 && item < 20 || item === 9 && item < 20 || item === 14 && item < 20 || item === 7 && item < 20 || item === 15 && item < 20){
+    let finalValue = array.filter((item) => {
+        if(item === 2 && item || item === 9 && item || item === 14 && item || item === 7 && item || item === 15 && item){
             CounterLetters++
             return item
         }
     })
 
-    if(finalValue.length >= 4){
+    finalValue = finalValue.filter((item, index) => {
+        return finalValue.indexOf(item) === index
+    })
+
+    if(finalValue.length >= 5){
         return console.log("Ganhou")
     }
+    
     return console.log("Perdeu")
 }
