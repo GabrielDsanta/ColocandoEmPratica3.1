@@ -2,7 +2,7 @@
 
 // MultiplicationTable("Opa")
 // BusStop([[10, 0], [3, 5], [5, 8], [3, 8], [12, 5]])
-Bingo([2, 2, 2, 7, 5, 14, 7, 7, 9, 10])
+// Bingo([21, 13, 2, 7, 5, 14, 7, 7, 9, 10])
 
 function MultiplicationTable(number){
     if(typeof number == 'string'){
@@ -41,10 +41,8 @@ function BusStop(array) {
 }
 
 function Bingo(array){
-    let CounterLetters = 0
     let finalValue = array.filter((item) => {
         if(item === 2 && item || item === 9 && item || item === 14 && item || item === 7 && item || item === 15 && item){
-            CounterLetters++
             return item
         }
     })
@@ -56,6 +54,6 @@ function Bingo(array){
     if(finalValue.length >= 5){
         return console.log("Ganhou")
     }
-    
+
     return console.log("Perdeu")
 }
